@@ -6,6 +6,7 @@ import { ConvexProviderWithClerk  } from "convex/react-clerk";
 import { ThemeProvider } from "./theme-provider";
 import { UnauthenticatedView } from "@/features/auth/unauthenticated-view";
 import { AuthLoadingView } from "../features/auth/auth-loading-view";
+import { TooltipProvider } from "./ui/tooltip";
 
 const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!);
 
@@ -20,7 +21,9 @@ export const Providers = ({ children }: { children: React.ReactNode }) => {
                     disableTransitionOnChange
                 >
                     <Authenticated>
-                        {children}
+                        <TooltipProvider>
+                            {children}
+                        </TooltipProvider>
                     </Authenticated>
                     <Unauthenticated>
                         <UnauthenticatedView />
