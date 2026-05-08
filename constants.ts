@@ -3,3 +3,4 @@ export const MAX_SIDEBAR_WIDTH = 800;
 export const DEFAULT_SIDEBAR_WIDTH = 350;
 export const DEFAULT_CONVERSATION_SIDEBAR_WIDTH = 400;
 export const DEFAULT_MAIN_SIZE = 1000;
+export const DEBOUNCE_MS = 1500;
