@@ -5,7 +5,7 @@ import { FileBreadcrumbs } from "./file-breadcrumbs";
 import { TopNavigation } from "./top-navigation";
 import Image from "next/image";
 import { CodeEditor } from "./code-editor";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { DEBOUNCE_MS } from "../../../../constants";
 
 export const EditorView = ({ projectId } : { projectId: Id<"projects"> }) => {
@@ -15,6 +15,15 @@ export const EditorView = ({ projectId } : { projectId: Id<"projects"> }) => {
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
     const isActiveBinary = activeFile && activeFile.storageId;
     const isActiveFileText = activeFile && !activeFile.storageId;
+
+    useEffect(() => {
+      return () => {
+        if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
+        }
+      };
+    }, [activeTabId]);
+    
     return (
         <div className="h-full flex flex-col">
             <div className="flex items-center">
